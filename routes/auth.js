@@ -30,6 +30,7 @@ router.post('/register', async (req, res) => {
 
         const sql =  "INSERT INTO users (id, fullname, email, password, birth_day) VALUES (?, ?, ?, ?, ?)";
         await queryDb(sql, [user_id, fullname, email, hashedPassword, birthday]);
+        res.status(200).json({ message: "Registration successful" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "An error occurred!", error: err.message });
